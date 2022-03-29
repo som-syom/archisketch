@@ -1,3 +1,3 @@
 export interface IImageData {
-  id: string;
+  _id: string;
 }
