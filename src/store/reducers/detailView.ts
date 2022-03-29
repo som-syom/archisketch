@@ -1,4 +1,9 @@
-import { ON_DETAILVIEW, OFF_DETAILVIEW } from '../actions/types';
+import {
+  ON_DETAILVIEW,
+  OFF_DETAILVIEW,
+  PREV_IMAGES,
+  NEXT_IMAGES,
+} from '../actions/types';
 import { DetailViewAction } from '../actions/detailView';
 
 export type DetailViewState = {
@@ -25,6 +30,16 @@ const detailView = (
       return {
         id: 0,
         isOpen: false,
+      };
+    case PREV_IMAGES:
+      return {
+        ...state,
+        id: state.id - 1,
+      };
+    case NEXT_IMAGES:
+      return {
+        ...state,
+        id: state.id + 1,
       };
     default:
       return state;
