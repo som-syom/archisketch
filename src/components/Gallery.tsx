@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
 import { callAPI } from '../api';
-import { IImageData } from '../utils/interface';
 import GalleryHeader from './GalleryHeader';
 import GalleryItem from './GalleryItem';
+import { setImages } from '../store/actions/images';
+import { RootState } from '../store/reducers';
 
 const Gallery: React.FC = () => {
-  const [images, setImages] = useState<IImageData[] | null>(null);
+  const dispatch = useDispatch();
+  const images = useSelector((state: RootState) => state.images.images);
 
   useEffect(() => {
     const requestGET = async (): Promise<void> => {
       await callAPI.get('/').then((res) => {
-        setImages(res.data.renderings);
+        dispatch(setImages(res.data.renderings));
       });
     };
     requestGET();
@@ -19,9 +22,9 @@ const Gallery: React.FC = () => {
 
   return (
     <GalleryContainer>
-      <GalleryHeader count={images ? images?.length : 0} />
+      <GalleryHeader count={images ? images.length : 0} />
       <GalleryList>
-        {images?.map((image, idx) => (
+        {images.map((image, idx) => (
           <GalleryItem key={idx} id={idx} image={image._id} />
         ))}
       </GalleryList>

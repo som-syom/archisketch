@@ -23,7 +23,7 @@ const GalleryItem: React.FC<IGalleryItemProps> = ({ id, image }) => {
     <ImageCard onClick={onClickImage}>
       <CardInner>
         <CardWrapper>
-          <Image src={image} />
+          <Image src={image} alt="cardImage" />
           <ImageMask />
         </CardWrapper>
       </CardInner>
@@ -34,6 +34,11 @@ const GalleryItem: React.FC<IGalleryItemProps> = ({ id, image }) => {
 const ImageCard = styled.div`
   flex: 0 1 25%;
   width: 25%;
+
+  @media (min-width: 1600px) {
+    flex: 0 1 20%;
+    width: 20%;
+  }
 `;
 
 const CardInner = styled.div`
