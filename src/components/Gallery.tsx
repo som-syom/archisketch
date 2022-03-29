@@ -22,7 +22,7 @@ const Gallery: React.FC = () => {
       <GalleryHeader count={images ? images?.length : 0} />
       <GalleryList>
         {images?.map((image, idx) => (
-          <GalleryItem key={idx} image={image._id} />
+          <GalleryItem key={idx} id={idx} image={image._id} />
         ))}
       </GalleryList>
     </GalleryContainer>
