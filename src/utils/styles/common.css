@@ -1,0 +1,9 @@
+button {
+  background-color: transparent;
+  border: none;
+}
+
+*,
+body {
+  box-sizing: border-box;
+}
