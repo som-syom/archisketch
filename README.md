@@ -30,7 +30,7 @@
 1. Git Clone
 
 ```
-git clone https://github.com/PreOnBoarding-Team17/Week2_Messenger.git
+git clone https://github.com/som-syom/archisketch
 ```
 
 2. 프로젝트 패키지 설치
