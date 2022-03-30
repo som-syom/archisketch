@@ -36,11 +36,11 @@ git clone https://github.com/som-syom/archisketch
 2. 프로젝트 패키지 설치
 
 ```
-yarn install
+npm install
 ```
 
 3. 프로젝트 실행
 
 ```
-yarn start
+npm run dev
 ```
