@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { offDetailView } from '../store/actions/detailView';
 
-const DetailHeader: React.FC = () => {
+const DetailHeader: React.FC<{ imgUrl: string }> = ({ imgUrl }) => {
   const dispatch = useDispatch();
 
   const onClickClose = (
@@ -12,6 +13,25 @@ const DetailHeader: React.FC = () => {
     e.stopPropagation();
     e.preventDefault();
     dispatch(offDetailView());
+  };
+
+  const onClickDownload = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.stopPropagation();
+    e.preventDefault();
+    axios({
+      url: decodeURIComponent(imgUrl),
+      method: 'GET',
+      responseType: 'blob',
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${imgUrl.split('/').pop()}`);
+      document.body.appendChild(link);
+      link.click();
+    });
   };
 
   return (
@@ -26,7 +46,7 @@ const DetailHeader: React.FC = () => {
         </svg>
       </CloseBtn>
       <RightMenu>
-        <DownloadBtn>
+        <DownloadBtn onClick={onClickDownload}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             focusable="false"
@@ -37,7 +57,7 @@ const DetailHeader: React.FC = () => {
             <path d="M12 16l4-5h-3V4h-2v7H8z" />
             <path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z" />
           </svg>
-          <span>Download</span>
+          <span>다운로드</span>
         </DownloadBtn>
         <DeleteBtn>
           <svg

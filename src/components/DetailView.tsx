@@ -34,7 +34,7 @@ const DetailView: React.FC = () => {
     <>
       {DetailData.isOpen && (
         <DetailViewContainer>
-          <DetailHeader />
+          <DetailHeader imgUrl={imageData[DetailData.id]._id} />
           <DetailBody>
             {DetailData.id > 0 && (
               <LeftBtn type="button" onClick={onClickPrev}>
