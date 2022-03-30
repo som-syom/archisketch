@@ -1,15 +1,53 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { onDetailView } from '../store/actions/detailView';
+import { RootState } from '../store/reducers';
+import { toggleCheckbox } from '../store/actions/selected';
 
-const ImageMask: React.FC = () => {
+const ImageMask: React.FC<{ id: number }> = ({ id }) => {
+  const dispatch = useDispatch();
+  const [isToggleMenu, setIsToggleMenu] = useState<boolean>(false);
+  const isChecked = useSelector(
+    (state: RootState) => state.selected.id
+  ).includes(id);
+  const checkboxRef = useRef<HTMLInputElement>(null);
+
+  const onClickImage = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (e.target !== checkboxRef.current) dispatch(onDetailView(id));
+  };
+
+  const onChangeCheckbox = (): void => {
+    setTimeout(() => {
+      dispatch(toggleCheckbox(id));
+    }, 0);
+  };
+
+  const onClickMenu = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsToggleMenu(!isToggleMenu);
+  };
+
   return (
-    <Mask>
+    <Mask onClick={onClickImage}>
       <CheckBox>
         <CheckBoxInner>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            ref={checkboxRef}
+            checked={isChecked ? true : false}
+            onChange={onChangeCheckbox}
+          />
         </CheckBoxInner>
       </CheckBox>
-      <Menu type="button">
+      <Menu type="button" onClick={onClickMenu}>
         <MenuInner>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -115,4 +153,4 @@ const MenuInner = styled.span`
   text-rendering: optimizeLegibility;
 `;
 
-export default ImageMask;
+export default React.memo(ImageMask);
