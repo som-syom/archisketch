@@ -3,8 +3,13 @@ import styled from '@emotion/styled';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { offDetailView } from '../store/actions/detailView';
+import { deleteImages } from '../store/actions/images';
+import { toggleModal } from '../store/actions/modal';
 
-const DetailHeader: React.FC<{ imgUrl: string }> = ({ imgUrl }) => {
+const DetailHeader: React.FC<{ imgUrl: string; id: number }> = ({
+  imgUrl,
+  id,
+}) => {
   const dispatch = useDispatch();
 
   const onClickClose = (
@@ -34,6 +39,15 @@ const DetailHeader: React.FC<{ imgUrl: string }> = ({ imgUrl }) => {
     });
   };
 
+  const onClickDelete = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(toggleModal());
+    // dispatch(deleteImages([id]));
+  };
+
   return (
     <Header>
       <CloseBtn onClick={onClickClose}>
@@ -59,7 +73,7 @@ const DetailHeader: React.FC<{ imgUrl: string }> = ({ imgUrl }) => {
           </svg>
           <span>다운로드</span>
         </DownloadBtn>
-        <DeleteBtn>
+        <DeleteBtn onClick={onClickDelete}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
