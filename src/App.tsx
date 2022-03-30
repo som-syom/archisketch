@@ -4,22 +4,20 @@ import './utils/styles/common.css';
 import Header from './components/Header';
 import Gallery from './components/Gallery';
 import DetailView from './components/DetailView';
-import store from './store';
-import { Provider, useSelector } from 'react-redux';
-import { DetailViewState } from './store/reducers/detailView';
+import Modal from './components/Modal';
+import { useSelector } from 'react-redux';
+import { RootState } from './store/reducers';
 
 const App: React.FC = () => {
-  // const isOpen = useSelector((state: DetailViewState) => state.isOpen);
+  const isToggleModal = useSelector((state: RootState) => state.modal.isOpen);
 
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
-        <Gallery />
-        {/* {isOpen && <DetailView />} */}
-        <DetailView />
-      </div>
-    </Provider>
+    <div className="App">
+      <Header />
+      <Gallery />
+      <DetailView />
+      {isToggleModal && <Modal />}
+    </div>
   );
 };
 
