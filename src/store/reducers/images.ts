@@ -1,13 +1,13 @@
-import { SET_IMAGES } from '../actions/types';
+import { SET_IMAGES, DELETE_IMAGES } from '../actions/types';
 import { IImageData } from '../../utils/interface';
 import { ImagesAction } from '../actions/images';
 
 export type imagesState = {
-  images: IImageData[];
+  images: IImageData[] | [];
 };
 
 const initialState: imagesState = {
-  images: [{ _id: '' }],
+  images: [],
 };
 
 const images = (
@@ -18,6 +18,13 @@ const images = (
     case SET_IMAGES:
       return {
         images: [...action.payload.images],
+      };
+    case DELETE_IMAGES:
+      return {
+        images: state.images.filter(
+          (image: IImageData, index: number) =>
+            !action.payload.id.includes(index)
+        ),
       };
     default:
       return state;
