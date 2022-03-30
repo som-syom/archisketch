@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/reducers';
 
 interface GalleryHeaderProps {
   count: number;
 }
 
 const GalleryHeader: React.FC<GalleryHeaderProps> = ({ count }) => {
+  const isChecked = useSelector((state: RootState) => state.selected.id);
+  const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
+
+  const onChangeAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isAllChecked) {
+      // 전체 선택
+    } else {
+      // 전체 해제
+    }
+    setIsAllChecked(isAllChecked);
+  };
+
   return (
     <Header>
-      <RenderCount>{count} 개의 렌더샷</RenderCount>
+      <RenderCount>
+        {isChecked.length > 1
+          ? `${isChecked.length - 1} 개의 렌더 이미지 선택됨`
+          : `${count} 개의 렌더샷`}
+        {isChecked.length > 1 && (
+          <>
+            <input
+              type="checkbox"
+              id="allSelect"
+              checked={isAllChecked}
+              onChange={onChangeAll}
+            />
+            <label htmlFor="allSelect">전체 선택</label>
+          </>
+        )}
+      </RenderCount>
       <Title>갤러리</Title>
       <SelectBox></SelectBox>
     </Header>

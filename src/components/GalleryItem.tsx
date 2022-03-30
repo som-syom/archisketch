@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import ImageMask from './ImageMask';
-import { useDispatch } from 'react-redux';
-import { onDetailView } from '../store/actions/detailView';
 
 interface IGalleryItemProps {
   id: number;
@@ -10,21 +8,12 @@ interface IGalleryItemProps {
 }
 
 const GalleryItem: React.FC<IGalleryItemProps> = ({ id, image }) => {
-  const dispatch = useDispatch();
-  const onClickImage = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ): void => {
-    e.stopPropagation();
-    e.preventDefault();
-    dispatch(onDetailView(id));
-  };
-
   return (
-    <ImageCard onClick={onClickImage}>
+    <ImageCard>
       <CardInner>
         <CardWrapper>
           <Image src={image} alt="cardImage" />
-          <ImageMask />
+          <ImageMask id={id} />
         </CardWrapper>
       </CardInner>
     </ImageCard>
