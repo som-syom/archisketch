@@ -1,5 +1,10 @@
 export const ON_DETAILVIEW = 'ON_DETAILVIEW' as const;
 export const OFF_DETAILVIEW = 'OFF_DETAILVIEW' as const;
 export const SET_IMAGES = 'SET_IMAGES' as const;
+export const DELETE_IMAGES = 'DELETE_IMAGES' as const;
 export const PREV_IMAGES = 'PREV_IMAGES' as const;
 export const NEXT_IMAGES = 'NEXT_IMAGES' as const;
+export const TOGGLE_MODAL = 'TOGGLE_MODAL' as const;
+export const TOGGLE_CHECKBOX = 'TOGGLE_CHECKBOX' as const;
+export const ALL_CHECK = 'ALL_CHECK' as const;
+export const ALL_UNCHECK = 'ALL_UNCHECK' as const;
