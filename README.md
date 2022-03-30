@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# 아키드로우 과제 테스트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [🏠 배포 사이트](https://archisketch-dasom.herokuapp.com/)
 
-## Available Scripts
+## 👉 구현 목록
 
-In the project directory, you can run:
+- 이미지 hover 시 checkbox 와 menu 표시와 함께 mask 로 어둡게 표시
+- 반응형 레이아웃
+- 이미지 클릭시 해당 이미지의 DetailView 로 이동
+- 메인 갤러리의 좌측 상단 렌더샷 갯수 표시
+- 메인 갤러리에서 체크박스 선택시 좌측 상단에 체크한 이미지 갯수 표시
+- Detail뷰에서 다운로드 버튼을 누르면 이미지가 다운로드 되도록 구현
+- Detail뷰에서 화살표를 누르면 좌우로 이미지가 이동되도록 구현
+- Detail뷰에서 삭제 버튼을 누르면 Modal 표시
+- 삭제 Modal 에서 삭제를 누르면 해당이미지 삭제후 모달 제거
+- Detail뷰에서 닫기 버튼을 누르면 다시 메인 갤러리로 돌아오도록 구현
 
-### `npm start`
+## 👉 기술
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- json-server
+- emotion
+- redux
+- axios
+- heroku
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 👉 프로젝트 설치 및 실행 ✨
 
-### `npm test`
+1. Git Clone
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone https://github.com/PreOnBoarding-Team17/Week2_Messenger.git
+```
 
-### `npm run build`
+2. 프로젝트 패키지 설치
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 프로젝트 실행
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn start
+```
